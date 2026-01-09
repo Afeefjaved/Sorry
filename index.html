@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I’m Sorry 💔</title>
+  <style>
+    :root {
+      --bg1: #0b1020;
+      --bg2: #2b0f1a;
+      --card: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.18);
+      --text: rgba(255, 255, 255, 0.92);
+      --muted: rgba(255, 255, 255, 0.72);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 30% 20%, #51204b 0%, transparent 60%),
+                  radial-gradient(900px 500px at 70% 70%, #7a1f2a 0%, transparent 60%),
+                  linear-gradient(135deg, var(--bg1), var(--bg2));
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .rose {
+      position: absolute;
+      font-size: clamp(18px, 3vw, 34px);
+      opacity: 0.25;
+      animation: floatUp linear infinite;
+      user-select: none;
+      pointer-events: none;
+    }
+    @keyframes floatUp {
+      from { transform: translateY(110vh) translateX(0) rotate(0deg); }
+      to   { transform: translateY(-20vh) translateX(40px) rotate(20deg); }
+    }
+    .card {
+      width: min(820px, 92vw);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: clamp(18px, 4vw, 36px);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 80px rgba(0,0,0,0.45);
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 5vw, 54px);
+      letter-spacing: 0.4px;
+      line-height: 1.05;
+    }
+    p {
+      margin: 8px 0;
+      font-size: clamp(16px, 2.3vw, 20px);
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .big-emoji {
+      font-size: clamp(34px, 6vw, 64px);
+      margin: 14px 0 8px;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 16px;
+    }
+    button {
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.12);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.08s ease, background 0.15s ease;
+    }
+    button:hover { background: rgba(255,255,255,0.18); }
+    button:active { transform: scale(0.98); }
+    .note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+    }
+    .footer {
+      margin-top: 18px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+    }
+    .hearts {
+      margin-top: 10px;
+      font-size: 18px;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="rose" style="left: 8%;  animation-duration: 14s; animation-delay: -2s;">🌹</div>
+  <div class="rose" style="left: 18%; animation-duration: 18s; animation-delay: -8s;">🌹</div>
+  <div class="rose" style="left: 32%; animation-duration: 16s; animation-delay: -5s;">🌹</div>
+  <div class="rose" style="left: 48%; animation-duration: 20s; animation-delay: -11s;">🌹</div>
+  <div class="rose" style="left: 62%; animation-duration: 15s; animation-delay: -7s;">🌹</div>
+  <div class="rose" style="left: 76%; animation-duration: 22s; animation-delay: -14s;">🌹</div>
+  <div class="rose" style="left: 90%; animation-duration: 17s; animation-delay: -9s;">🌹</div>
+
+  <main class="card">
+    <h1>I’m sorry… please forgive me 💔</h1>
+    <div class="big-emoji">😭😭😭</div>
+
+    <p>
+      I know I hurt you, and I’m genuinely sorry.
+      I don’t want excuses — I want to make it right.
+    </p>
+    <p>
+      Please give me a chance to fix this. 🌹
+    </p>
+
+    <div class="hearts">🌹🌹🌹 &nbsp;😭&nbsp;😭&nbsp;😭&nbsp; 🌹🌹🌹</div>
+
+    <div class="row">
+      <button id="playBtn">Play song 🎵</button>
+      <button id="pauseBtn">Pause ⏸️</button>
+      <span class="note">(Add your audio file as <b>song.mp3</b> in this repo)</span>
+    </div>
+
+    <div class="footer">
+      From: <b>Your Name</b>
+    </div>
+
+    <audio id="bgAudio" loop>
+      <source src="song.mp3" type="audio/mpeg" />
+    </audio>
+  </main>
+
+  <script>
+    const audio = document.getElementById("bgAudio");
+    document.getElementById("playBtn").addEventListener("click", async () => {
+      try { await audio.play(); } 
+      catch (e) { alert("Click Play again — browsers block autoplay until interaction."); }
+    });
+    document.getElementById("pauseBtn").addEventListener("click", () => audio.pause());
+  </script>
+</body>
+</html>
